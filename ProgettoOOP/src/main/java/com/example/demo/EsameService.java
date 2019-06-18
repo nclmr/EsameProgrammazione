@@ -3,7 +3,8 @@ package com.example.demo;
 import java.io.IOException;
 
 import org.json.simple.JSONArray;
-
+import org.springframework.stereotype.Service;
+@Service
 public class EsameService {
 	static CSVParsing csvparse=new CSVParsing();
 
