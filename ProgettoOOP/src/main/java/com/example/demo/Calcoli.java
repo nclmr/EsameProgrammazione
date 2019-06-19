@@ -13,7 +13,8 @@ public class Calcoli {
 		e.printStackTrace();}
 	}
 	
-	
+	/*Restituisce l'ArrayList nel caso in cui le variabili selezionate sono infortuni o infortunimortali.
+	 * L'ArrayList viene riempita da tutti i valori degli attributi infortuni e infortuni mortali*/
 	public ArrayList<Integer> restituzioneArray(int colonna){
 		ArrayList<Integer> array=new ArrayList<Integer>();
 		for(int i=0;i<csvparse.getDati().size();i++) {
@@ -23,7 +24,7 @@ public class Calcoli {
 		
 		return array;
 	}
-	
+	//Calcolo della media
 	public int CalcoloMedia(ArrayList<Integer> array) {
 		int i;
 		int sum=0;
@@ -32,7 +33,7 @@ public class Calcoli {
 		}
 		return sum/i;
 	}
-	
+	//Ricerca del minimo
 	public int TrovaMin(ArrayList<Integer> array) {
 		int i;
 		int min=array.get(0);
@@ -45,7 +46,7 @@ public class Calcoli {
 		}
 		return min;
 		}
-	
+	//Ricerca del massimo
 	public int TrovaMax(ArrayList<Integer> array) {
 		int i;
 		int max=array.get(0);
@@ -57,7 +58,7 @@ public class Calcoli {
 		}
 		return max;
 		}
-	
+	//Calcolo della somma
 	public int Somma(ArrayList<Integer> array) {
 		int i;
 		int sum=0;
@@ -67,7 +68,7 @@ public class Calcoli {
 		}
 		return sum;
 	}
-	
+	//Calcolo della Deviazione Standard
 	public int calculateSD(ArrayList<Integer> array)
     {
         double sum = 0.0, standardDeviation = 0.0;

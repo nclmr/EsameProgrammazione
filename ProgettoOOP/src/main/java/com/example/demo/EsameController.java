@@ -10,35 +10,30 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RestController;
 @RestController
 public class EsameController {
-	@Autowired
+	@Autowired //Esprimo la dipendenza della classe EsameService
 	private EsameService a;
-	
-	@GetMapping("/metadati")
+	/*Creo il root per la restituzione dei metadati e il relativo metodo che restituisce un JSONArray
+	 * riempito con i relativi campi della classe infortuni*/
+	@GetMapping("/metadati") 
 	public JSONArray metadati() {
-		/*JSONArray array=new JSONArray();
-		for(int i=0;i<4;i++) {
-			array.add(a.jsonparse.getTitolo()[i]);
-		}
-		System.out.println(array);
-		JSONObject obj=new JSONObject();
-		obj.put("Metadati ", array);
-		System.out.println(obj);
-		return obj;*/
-		JSONArray array=new JSONArray();
-		//JSONObject obj= new JSONObject();
+		JSONArray array=new JSONArray(); 
 		for(int i=0;i<4;i++) {
 			JSONObject obj= new JSONObject();
-			obj.put("descrizione", a.csvparse.getTitolo()[i]);
+			obj.put("descrizione", a.csvparse.getTitolo()[i]); 
 			array.add(obj);
 		}
 		return array;
 	}
-	
+	/*Creo il root per la restituzione dei dati utilizzando il metodo dati() presente in EsameService*/
 	@GetMapping("/dati")
 	public JSONArray dati() {
 		return a.dati();
 	}
-	
+	/*Creo il root per la restituzione delle stats in cui utilizzo @PathVariable che recupera 
+	 * i valori dell'URL,{scelta} consente di recuperare il valore presente nell'URL 
+	 * e confrontarlo. Successivamente creo un'istanza della classe calcoli del eseguo 
+	 * con i metodi di questa classe la media, ricerca min/max.. li inserisco in un JSONObject, 
+	 * quest'ultimo invece lo inserisco in un JSONArray e restituisco l'Array*/ 
 	@GetMapping("/stats/{scelta}")
 	public JSONArray stats(@PathVariable String scelta) {
 		int colonna=0;
@@ -57,10 +52,6 @@ public class EsameController {
 		obj1.put("std", a.calculateSD(vector));
 		obj1.put("sum", a.Somma(vector));
 		array.add(obj1);
-		/*array.add(obj2);
-		array.add(obj3);
-		array.add(obj4);
-		array.add(obj5);*/
 		
 		return array;
 	}

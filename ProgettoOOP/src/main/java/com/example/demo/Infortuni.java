@@ -1,5 +1,6 @@
 package com.example.demo;
-
+/*Creo la struttura per memorizzare ogni riga del file csv, con i relativi metodi setter e getter
+ * per ogni variabile e il relativo metodo toString*/
 public class Infortuni {
 	private String anno;
 	private String caratteristica;
