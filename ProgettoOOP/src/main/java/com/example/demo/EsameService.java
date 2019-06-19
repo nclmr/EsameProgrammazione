@@ -11,7 +11,7 @@ public class EsameService {
 	static {
 		Download download=new Download();
 		download.Download();
-		System.out.println("download eseguito");
+		System.out.println("download eseguito(test)");
 		try{
 			csvparse.Parsing();
 		}
