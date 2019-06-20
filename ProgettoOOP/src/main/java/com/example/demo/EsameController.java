@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.RestController;
 public class EsameController {
 	@Autowired //Esprimo la dipendenza della classe EsameService
 	private EsameService a;
-	/**Creo il root per la restituzione dei metadati e il relativo metodo che li restituisce in un JSONArray.
+	/**Creo la richiesta per la restituzione dei metadati e il relativo metodo che li restituisce in un JSONArray.
 	 * @return JSONArray che contiene i metadati*/
 	@GetMapping("/metadati") 
 	public JSONArray metadati() {
@@ -27,31 +27,34 @@ public class EsameController {
 		}
 		return array;
 	}
-	/**Creo il root per la restituzione dei dati. Nel metodo utilizzodo il metodo dati() presente in EsameService
+	/**Creo la rechiesta per la restituzione dei dati. Nel metodo utilizzodo il metodo dati() presente in EsameService
 	 * per la restituzione del JSONArray contenente tutti i dati in formato JSON
 	 * @return JSONArray contenente tutti i dati*/
 	@GetMapping("/dati")
 	public JSONArray dati() {
 		return a.dati();
 	}
-	/**Creo il root per la restituzione delle stats. Nel metodo utilizzo @PathVariable che recupera 
-	 * i valori dell'URL,{scelta} consente di recuperare il valore presente nell'URL 
-	 * e confrontarlo. Successivamente creo un'istanza della classe calcoli del eseguo 
-	 * con i metodi di questa classe la media, ricerca min/max.. li inserisco in un JSONObject, 
-	 * quest'ultimo invece lo inserisco in un JSONArray e restituisco l'Array
+	/**Creo la richiesta per la restituzione delle stats. Nel metodo utilizzo @PathVariable, che recupera 
+	 * il valore di {scelta} dall'URL, e lo assegna a tale variabile. Successivamente creo un'istanza della classe Calcoli ed eseguo 
+	 * con i metodi di tale classe la media, ricerca min/max, ecc... e li inserisco in un JSONObject, 
+	 * inserito in un JSONArray che verrà restituito
 	 * @return Ritorna il JSONArray contenente tutte le stats calcolate*/ 
 	@GetMapping("/stats/{scelta}")
 	public JSONArray stats(@PathVariable String scelta) {
 		int colonna=0;
-		if(scelta.equals("anno")) colonna=0;
-		if(scelta.equals("Caratteristiche infortunato") || scelta.equals("Carattersitiche infortunato")) colonna=1;
+		JSONArray array=new JSONArray();
+		JSONObject obj1=new JSONObject();
+		if(scelta.equals("anno") || scelta.equals("Caratteristiche infortunato") || scelta.equals("Carattersitiche infortunato") ) {
+			String a="Non esistono statistiche per questa scelta!";
+			obj1.put("Errore", a);
+			array.add(obj1);
+			return array;
+		}
 		if(scelta.equals("infortuni")) colonna=2;
 		if(scelta.equals("infortunimortali")) colonna=3;
 		Calcoli a=new Calcoli();
 		ArrayList<Integer> vector=new ArrayList<Integer>();
 		vector=a.restituzioneArray(colonna);
-		JSONObject obj1=new JSONObject();
-		JSONArray array=new JSONArray();
 		obj1.put("avg", a.CalcoloMedia(vector));
 		obj1.put("min", a.TrovaMin(vector));
 		obj1.put("max", a.TrovaMax(vector));

@@ -13,9 +13,9 @@ import java.text.ParseException;
 import org.json.simple.*;
 
 /**Classe utilizzata per effettuare il download del dataset leggendo dall'url assegnato il file JSON attraverso
- * le classi URLConnection, InputStream, InputStreamReader, BufferedReader per legg. 
+ * le classi URLConnection, InputStream, InputStreamReader, BufferedReader. 
  * Il file JSON viene letto utilizzando le classi JSONObject e JSONArray, poi viene estratto l'url
- * del file .csv che viene utilizzato per effettuare il suo download.
+ * del file .csv che viene utilizzato per effettuare il download.
  * @author MattiaSospetti
  * @author NicolaMori*/
 public class Download {
@@ -59,7 +59,7 @@ public class Download {
 			e.printStackTrace();
 		}
 	}
-	/**Questo metodo viene utilizzato per scaricare il file csv aprendo uno stream e con Files.copy() 
+	/**Questo metodo viene utilizzato per scaricare il file .csv aprendo uno stream e con Files.copy() 
 	 * viene copiato byte per byte e salvato in un path.
 	 * @param url URL dove è contenuto il csv
 	 * @param fileName Nome del file salvato

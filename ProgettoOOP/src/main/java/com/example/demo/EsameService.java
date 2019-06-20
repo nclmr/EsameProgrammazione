@@ -28,9 +28,9 @@ public class EsameService {
 		}
 			
 		}
-	/**Metodo per aggiungere elementi in un JSONArray e restituire quest'ultimo. Il JSONArray viene 
-	 * "riempito" dagli oggetti contenuti nell'ArrayList che sono della classe Infortuni.
-	 * @param
+	/**Metodo per aggiungere elementi in un JSONArray e restituire quest'ultimo. Le istanze 
+	 * di Infortuni contenute nell' ArrayList verranno inserite in un JSONArray , che verrà restituito
+	 * @param (void)
 	 * @return Viene restituito il JSONArray creato all'interno del metodo.*/
 	public JSONArray dati() {
 		JSONArray array=new JSONArray();

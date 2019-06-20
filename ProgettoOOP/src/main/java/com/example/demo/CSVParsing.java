@@ -5,7 +5,7 @@ import java.io.FileReader;
 import java.io.IOException;
 import java.util.ArrayList;
 /**Classe utilizzata per effettuare il parsing del csv inserendo i dati di volta in volta in oggetti Infortuni
- * che a loro volta vengono aggiunti in una ArrayList. Il titolo viene memorizzato in una stringa a parte.
+ * che a loro volta vengono aggiunti in una ArrayList. Il titolo viene memorizzato in una vettore a parte.
  * @author MattiaSospetti
  * @author NicolaMori*/
 public class CSVParsing {

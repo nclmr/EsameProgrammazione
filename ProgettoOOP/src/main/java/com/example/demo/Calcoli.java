@@ -2,7 +2,7 @@ package com.example.demo;
 
 import java.io.IOException;
 import java.util.ArrayList;
-/**Classe utilizzata per effettuare i calcoli che poi verranno restituiti in formato JSON, sono presenti
+/**Classe utilizzata per effettuare i calcoli che poi verranno restituiti in formato JSON; sono presenti
  * tutti i metodi che effettuano i calcoli richiesti.
  * @author MattiaSospetti
  * @author NicolaMori*/
@@ -17,8 +17,7 @@ public class Calcoli {
 	}
 	
 	/**Metodo che crea un oggetto ArrayList di interi, e nel caso in cui il parametro che gli passo
-	 * è uguale a 2 o 3, aggiunge all'ArrayList i numeri corrispondenti restituiti dai metodi getInfortuni
-	 * e getInfortunimortali.
+	 * sia uguale a 2 o 3, aggiunge all'ArrayList i valori corrispondenti alla colonna scelta.
 	 * @param colonna Specificare con quale campo riempire l'ArrayList.
 	 * @return array Ritorna l'ArrayList riempita di tutti i valori scelti.*/
 	public ArrayList<Integer> restituzioneArray(int colonna){
