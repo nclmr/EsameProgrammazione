@@ -1,6 +1,9 @@
 package com.example.demo;
-/*Creo la struttura per memorizzare ogni riga del file csv, con i relativi metodi setter e getter
- * per ogni variabile e il relativo metodo toString*/
+/**Classe dove definisco gli attributi utilizzati per il parsing del file CSV, per ogni attributo definisco
+ * metodi get e set. Anche un metodo toString() per stampare tutti gli attributi.
+ * 
+ * @author MattiaSospetti
+ * @author NicolaMori*/
 public class Infortuni {
 	private String anno;
 	private String caratteristica;
