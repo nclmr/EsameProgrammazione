@@ -140,4 +140,31 @@ public class EsameController {
 			}
 		return array;
 	}
+
+@GetMapping("/dati/{value1}$and{value2}")
+public JSONArray filtroAnd(@PathVariable String value1, @PathVariable String value2) {
+	JSONArray array=new JSONArray();
+	if(value2.equals("infortuni")) {
+		for(int i=0;i<a.csvparse.getDati().size();i++) {
+		if(a.csvparse.getDati().get(i).getAnno().equals(value1)){
+			JSONObject obj=new JSONObject();
+			obj.put("Infortuni: "+a.csvparse.getDati().get(i).getCaratteristica(), a.csvparse.getDati().get(i).getInfortuni());
+			array.add(obj);
+		}
+		}
+		return array;
+	}
+	
+	if(value2.equals("infortunimortali")) {
+		for(int i=0;i<a.csvparse.getDati().size();i++) {
+		if(a.csvparse.getDati().get(i).getAnno().equals(value1)){
+			JSONObject obj=new JSONObject();
+			obj.put("Infortuni: "+a.csvparse.getDati().get(i).getCaratteristica(), a.csvparse.getDati().get(i).getInfortunimortali());
+			array.add(obj);
+		}
+		}
+		return array;
+	}
+	return array;
+}
 }
