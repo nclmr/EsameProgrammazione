@@ -64,4 +64,22 @@ public class EsameController {
 		
 		return array;
 	}
+
+	
+	@GetMapping("/dati/{operatore}")
+	public JSONArray filtri(@PathVariable String operatore) {
+		ArrayList<Infortuni> b=new ArrayList<Infortuni>();
+		JSONArray array= new JSONArray();
+		b=a.csvparse.getDati();
+		FilterUtils<Infortuni> c=new FilterUtils<Infortuni>();
+		ArrayList<Infortuni> d=new ArrayList<Infortuni>();
+		d=(ArrayList<Infortuni>) c.select(b, "infortuni", "$gt", 30);
+		for(int i=0;i<d.size();i++) {
+			JSONObject obj= new JSONObject();
+			obj.put("filtro", d.get(i)); 
+			array.add(obj);
+		}
+		return array;
+	}
+
 }
