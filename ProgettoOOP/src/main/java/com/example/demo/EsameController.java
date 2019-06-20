@@ -66,19 +66,78 @@ public class EsameController {
 	}
 
 	
-	@GetMapping("/dare")
-	public JSONArray filtri () {
+	@GetMapping("/dati/{filterField}/maggiore/{value}")
+	public JSONArray maggiore (@PathVariable int value, @PathVariable String filterField) {
 		JSONArray array= new JSONArray();
 		FilterUtils prova=new FilterUtils();
+		if(filterField.equals("Infortuni")) {
 		for(int i=0; i<a.csvparse.getDati().size(); i++) {
-			if (prova.checkConditional(Integer.parseInt(a.csvparse.getDati().get(i).getInfortuni()), "$gt",10000)) {
+			if (prova.checkConditional(Integer.parseInt(a.csvparse.getDati().get(i).getInfortuni()), "$gt",value)) {
 				JSONObject obj=new JSONObject();
 				obj.put("filtro", a.csvparse.getDati().get(i));
 				array.add(obj);
 			}
-				
+			}
+		return array;
 		}
+			if(filterField.equals("InfortuniMortali")) {
+				for(int i=0; i<a.csvparse.getDati().size(); i++) {
+				if (prova.checkConditional(Integer.parseInt(a.csvparse.getDati().get(i).getInfortunimortali()), "$gt",value)) {
+					JSONObject obj=new JSONObject();
+					obj.put("filtro", a.csvparse.getDati().get(i));
+					array.add(obj);
+			}
+			}
+				return array;
+			}
+			if(filterField.equals("Anno")) {
+				for(int i=0; i<a.csvparse.getDati().size(); i++) {
+				if (prova.checkConditional(Integer.parseInt(a.csvparse.getDati().get(i).getAnno()), "$gt",value)) {
+					JSONObject obj=new JSONObject();
+					obj.put("filtro", a.csvparse.getDati().get(i));
+					array.add(obj);
+				}
+			}
+				return array;
+			}
 		return array;
 	}
+	
 
+	@GetMapping("/dati/{filterField}/minore/{value}")
+	public JSONArray minore (@PathVariable int value, @PathVariable String filterField) {
+		JSONArray array= new JSONArray();
+		FilterUtils prova=new FilterUtils();
+		if(filterField.equals("Infortuni")) {
+		for(int i=0; i<a.csvparse.getDati().size(); i++) {
+			if (prova.checkConditional(Integer.parseInt(a.csvparse.getDati().get(i).getInfortuni()), "$lt",value)) {
+				JSONObject obj=new JSONObject();
+				obj.put("filtro", a.csvparse.getDati().get(i));
+				array.add(obj);
+			}
+			}
+		return array;
+		}
+			if(filterField.equals("InfortuniMortali")) {
+				for(int i=0; i<a.csvparse.getDati().size(); i++) {
+				if (prova.checkConditional(Integer.parseInt(a.csvparse.getDati().get(i).getInfortunimortali()), "$lt",value)) {
+					JSONObject obj=new JSONObject();
+					obj.put("filtro", a.csvparse.getDati().get(i));
+					array.add(obj);
+			}
+			}
+				return array;
+			}
+			if(filterField.equals("Anno")) {
+				for(int i=0; i<a.csvparse.getDati().size(); i++) {
+				if (prova.checkConditional(Integer.parseInt(a.csvparse.getDati().get(i).getAnno()), "$lt",value)) {
+					JSONObject obj=new JSONObject();
+					obj.put("filtro", a.csvparse.getDati().get(i));
+					array.add(obj);
+				}
+			}
+				return array;
+			}
+		return array;
+	}
 }
