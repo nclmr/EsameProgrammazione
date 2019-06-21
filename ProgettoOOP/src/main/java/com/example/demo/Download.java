@@ -63,7 +63,7 @@ public class Download {
 	 * viene copiato byte per byte e salvato in un path.
 	 * @param url URL dove è contenuto il csv
 	 * @param fileName Nome del file salvato
-	 * @return void*/
+	 * @throws Exception*/
 	public static void download(String url, String fileName) throws Exception {
 	    try (InputStream in = URI.create(url).toURL().openStream()) {
 	        Files.copy(in, Paths.get(fileName), REPLACE_EXISTING);

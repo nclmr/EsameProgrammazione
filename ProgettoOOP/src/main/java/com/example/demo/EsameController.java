@@ -38,7 +38,8 @@ public class EsameController {
 	 * il valore di {scelta} dall'URL, e lo assegna a tale variabile. Successivamente creo un'istanza della classe Calcoli ed eseguo 
 	 * con i metodi di tale classe la media, ricerca min/max, ecc... e li inserisco in un JSONObject, 
 	 * inserito in un JSONArray che verrà restituito
-	 * @return Ritorna il JSONArray contenente tutte le stats calcolate*/ 
+	 * @return Ritorna il JSONArray contenente tutte le stats calcolate
+	 * @param scelta*/ 
 	@GetMapping("/stats/{scelta}")
 	public JSONArray stats(@PathVariable String scelta) {
 		int colonna=0;
@@ -65,7 +66,13 @@ public class EsameController {
 		return array;
 	}
 
-	
+	/**
+	 *  Metodo per la restituzione della struttura dati, filtrata, tramite 
+	 *  gli operatori condizionali maggiore e minore, sul numero di infortuni ed infortuni mortali
+	 *  opportunatamente selezionati con il filterField
+	 * @param value
+	 * @param filterField
+	 */
 	@GetMapping("/dati/{filterField}/maggiore/{value}")
 	public JSONArray maggiore (@PathVariable int value, @PathVariable String filterField) {
 		JSONArray array= new JSONArray();
@@ -140,7 +147,16 @@ public class EsameController {
 			}
 		return array;
 	}
-
+/**
+ * Metodo per filtrare la struttura dati attraverso gli operatori logici AND ed NOT.
+ * Nel primo campo viene inserito l'anno desiderato
+ * Nel secondo il campo da rappresentare, tra Infortuni ed InfortuniMortali
+ * La struttura dati viene completata con un ultimo oggetto JSON
+ * contenente le statistiche del campo filtrato
+ * @param value1
+ * @param value2
+ * @return
+ */
 @GetMapping("/dati/{value1}$and{value2}")
 public JSONArray filtroAnd(@PathVariable String value1, @PathVariable String value2) {
 	JSONArray array=new JSONArray();
