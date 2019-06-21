@@ -53,7 +53,6 @@ public class Download {
 			        }
 			    }
 			}
-			System.out.println( "OK" );
 		} catch (IOException | ParseException e ) {
 			e.printStackTrace();
 		} catch (Exception e) {

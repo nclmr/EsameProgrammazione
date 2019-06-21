@@ -53,8 +53,7 @@ public class Calcoli {
 		for(i=1;i<array.size();i++) {
 			if(min>array.get(i)) {
 				min=array.get(i);
-			}	
-			else min=array.get(0);
+			}
 		}
 		return min;
 		}
@@ -67,9 +66,9 @@ public class Calcoli {
 		int i;
 		int max=array.get(0);
 		if(array.size()==0) return 0;
-		for(i=0;i<array.size();i++) {
+		for(i=1;i<array.size();i++) {
 			if(max<array.get(i)) {
-				max=i;
+				max=array.get(i);
 			}	
 		}
 		return max;

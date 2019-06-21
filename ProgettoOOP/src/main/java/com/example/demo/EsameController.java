@@ -144,14 +144,25 @@ public class EsameController {
 @GetMapping("/dati/{value1}$and{value2}")
 public JSONArray filtroAnd(@PathVariable String value1, @PathVariable String value2) {
 	JSONArray array=new JSONArray();
+	Calcoli calcolo=new Calcoli();
+	ArrayList<Integer> filtrata= new ArrayList();
+	
 	if(value2.equals("infortuni")) {
 		for(int i=0;i<a.csvparse.getDati().size();i++) {
 		if(a.csvparse.getDati().get(i).getAnno().equals(value1)){
 			JSONObject obj=new JSONObject();
+			filtrata.add(Integer.parseInt(a.csvparse.getDati().get(i).getInfortuni()));
 			obj.put("Infortuni: "+a.csvparse.getDati().get(i).getCaratteristica(), a.csvparse.getDati().get(i).getInfortuni());
 			array.add(obj);
+			}
 		}
-		}
+		JSONObject obj1=new JSONObject();
+		obj1.put("avg",calcolo.CalcoloMedia(filtrata));
+		obj1.put("sum", calcolo.Somma(filtrata));
+		obj1.put("max",calcolo.TrovaMax(filtrata));
+		obj1.put("min",calcolo.TrovaMin(filtrata));
+		obj1.put("std", calcolo.calculateSD(filtrata));
+		array.add(obj1);
 		return array;
 	}
 	
@@ -159,12 +170,34 @@ public JSONArray filtroAnd(@PathVariable String value1, @PathVariable String val
 		for(int i=0;i<a.csvparse.getDati().size();i++) {
 		if(a.csvparse.getDati().get(i).getAnno().equals(value1)){
 			JSONObject obj=new JSONObject();
+			filtrata.add(Integer.parseInt(a.csvparse.getDati().get(i).getInfortunimortali()));
 			obj.put("Infortuni: "+a.csvparse.getDati().get(i).getCaratteristica(), a.csvparse.getDati().get(i).getInfortunimortali());
 			array.add(obj);
+		    }
 		}
-		}
+		JSONObject obj1=new JSONObject();
+		obj1.put("avg",calcolo.CalcoloMedia(filtrata));
+		obj1.put("sum", calcolo.Somma(filtrata));
+		obj1.put("max",calcolo.TrovaMax(filtrata));
+		obj1.put("min",calcolo.TrovaMin(filtrata));
+		obj1.put("std", calcolo.calculateSD(filtrata));
+		array.add(obj1);
 		return array;
 	}
 	return array;
+}
+
+@GetMapping("/dati/$not{value}")
+public JSONArray filtroNot(@PathVariable String value) {
+	JSONArray array= new JSONArray();
+	for(int i=0;i<a.csvparse.getDati().size();i++) {
+		if(!(a.csvparse.getDati().get(i).getAnno().equals(value))) {
+			JSONObject obj=new JSONObject();
+			obj.put("Filtro", a.csvparse.getDati().get(i));
+			array.add(obj);
+		}
+	}
+	return array;
+	
 }
 }
