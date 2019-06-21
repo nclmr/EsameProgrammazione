@@ -9,6 +9,7 @@ import java.net.URLConnection;
 import java.nio.file.FileAlreadyExistsException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
+import static java.nio.file.StandardCopyOption.REPLACE_EXISTING;
 import java.text.ParseException;
 import org.json.simple.*;
 
@@ -66,7 +67,7 @@ public class Download {
 	 * @return void*/
 	public static void download(String url, String fileName) throws Exception {
 	    try (InputStream in = URI.create(url).toURL().openStream()) {
-	        Files.copy(in, Paths.get(fileName));
+	        Files.copy(in, Paths.get(fileName), REPLACE_EXISTING);
 	    }
 	}
 
