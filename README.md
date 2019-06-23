@@ -1,6 +1,8 @@
 # EsameProgrammazione
 Esame programmazione ad oggetti.
 
+Per il funzionamento del progetto deve essere importata la libreria json-simple.jar
+
 Comandi utilizzabili:
 
 /metadati : restituzione metadati
